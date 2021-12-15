@@ -1,2 +1,2 @@
-# charbuffer
-A C scrap for managing a simple buffer of chars.
+# charbuffer 0.0.0.
+
