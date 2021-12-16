@@ -26,18 +26,15 @@ struct charbuf *charbuf_new(void);
 void      charbuf_free(struct charbuf **pp);
 
 /**
- *  @brief Initialize a charbuf object.
- *  @details FIXME longer description here ...
- *  @param[in,out] p Pointer to a charbuf object
- *  @param[in] x FIXME
-    @returns FIXME
- */
-int       charbuf_init(struct charbuf *p, void *x);
-
-/**
  *  @brief Return the version of this package.
  *  @returns Version string.
  */
 const char *charbuf_version(void);
+
+
+const char *charbuf_expose(struct charbuf *p);
+unsigned  charbuf_len(struct charbuf *p);
+int       charbuf_push(struct charbuf *p, char c);
+void      charbuf_reset(struct charbuf *p);
 
 #endif

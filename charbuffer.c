@@ -23,8 +23,9 @@
 
 struct charbuf {
    char     *buffer;
-   unsigned  len;
+   unsigned  idx;
    unsigned  size;
+   unsigned  extend;
 };
 
 struct charbuf *
@@ -37,6 +38,9 @@ charbuf_new(void)
       return NULL;
 
    tp->buffer = NULL;
+   tp->idx = 0;
+   tp->size = 0;
+   tp->extend = 1024;
 
    return tp;
 }
@@ -45,19 +49,9 @@ void
 charbuf_free(struct charbuf **pp)
 {
 
-   /* Do some magic here ... */
-
+   FREE((*pp)->buffer);
    FREE(*pp);
    *pp = NULL;
-}
-
-int
-charbuf_init(struct charbuf *p, void *x)
-{
-
-   /* Do some magic here ... */
-
-   return 0;
 }
 
 const char *
@@ -65,6 +59,45 @@ charbuf_version(void)
 {
    return "0.0.0";
 }
+
+const char *
+charbuf_expose(struct charbuf *p)
+{
+   return (const char *) p->buffer;
+}
+
+unsigned
+charbuf_len(struct charbuf *p)
+{
+   return p->idx;
+}
+
+int
+charbuf_push(struct charbuf *p, char c)
+{
+   if (p->idx == p->size) {
+      unsigned  need = p->size + p->extend;
+      char     *tp = realloc(p->buffer, need * sizeof(char));
+
+      if (IS_NULL(tp))
+         return 1;
+
+      p->buffer = tp;
+      p->size = need;
+   }
+
+   (p->buffer)[p->idx] = c;
+   p->idx += 1;
+
+   return 0;
+}
+
+void
+charbuf_reset(struct charbuf *p)
+{
+   p->idx = 0;
+}
+
 
 #undef  IS_NULL
 #undef  FREE
