@@ -1,4 +1,4 @@
-# charbuffer 0.0.0.
+# charbuffer 0.0.1-dev0.
 
 A pretty limited-purpose C scrap, but handy in the right places.
 
