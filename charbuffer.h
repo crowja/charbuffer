@@ -1,6 +1,6 @@
 /**
  *  @file charbuffer.h
- *  @version 0.0.1-dev0
+ *  @version 0.0.1
  *  @date
  *  @copyright
  *  @license Unlicense <http://unlicense.org/>

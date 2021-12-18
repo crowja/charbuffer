@@ -1,6 +1,6 @@
 /**
  *  @file charbuffer.c
- *  @version 0.0.1-dev0
+ *  @version 0.0.1
  *  @date
  *  @copyright
  *  @license Unlicense <http://unlicense.org/>
@@ -57,7 +57,7 @@ charbuf_free(struct charbuf **pp)
 const char *
 charbuf_version(void)
 {
-   return "0.0.1-dev0";
+   return "0.0.1";
 }
 
 const char *
