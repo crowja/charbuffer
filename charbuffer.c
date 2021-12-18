@@ -72,6 +72,20 @@ charbuf_len(struct charbuf *p)
    return p->idx;
 }
 
+char
+charbuf_pop(struct charbuf *p)
+{
+   /**
+    *  NOTE: There's no safety check here. Use in conjunction
+    *  with charbuf_len(), e.g., pop while len > 0:
+    *     
+    *     while(charbuf_len(p))     
+    *        char c = charbuf_pop(p);
+    **/
+   p->idx -= 1;
+   return (p->buffer)[p->idx];
+}
+
 int
 charbuf_push(struct charbuf *p, char c)
 {

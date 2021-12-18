@@ -34,6 +34,7 @@ const char *charbuf_version(void);
 
 const char *charbuf_expose(struct charbuf *p);
 unsigned  charbuf_len(struct charbuf *p);
+char      charbuf_pop(struct charbuf *p);
 int       charbuf_push(struct charbuf *p, char c);
 void      charbuf_reset(struct charbuf *p);
 

@@ -55,6 +55,34 @@ test01(void)
    ASSERT_EQUALS(NULL, z);
 }
 
+static void
+test_push_pop(void)
+{
+   struct charbuf *z;
+
+   fprintf_test_info(stdout, "test_push_pop", "charbuf_push, charbuf_pop");
+   z = charbuf_new();
+   ASSERT("Constructor test", z);
+
+   charbuf_push(z, 'H');
+   charbuf_push(z, 'e');
+   charbuf_push(z, 'l');
+   charbuf_push(z, 'l');
+   charbuf_push(z, 'o');
+   charbuf_push(z, '!');
+   charbuf_push(z, '\0');
+   ASSERT_STRING_EQUALS("Hello!", charbuf_expose(z));
+
+   while (charbuf_len(z) > 2) {
+      char      c = charbuf_pop(z);
+   }
+   charbuf_push(z, '\0');
+   ASSERT_STRING_EQUALS("He", charbuf_expose(z));
+
+   charbuf_free(&z);
+   ASSERT_EQUALS(NULL, z);
+}
+
 #if 0                                            /* 12 yy */
 static void
 test_stub(void)
@@ -77,6 +105,7 @@ main(void)
 
    RUN(test_constr);
    RUN(test01);
+   RUN(test_push_pop);
 
    return TEST_REPORT();
 }
